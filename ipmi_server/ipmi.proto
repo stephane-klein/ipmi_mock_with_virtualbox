@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message IPMIRequest {
+    string ip = 1;
+}
+
+message IPMIResponse {
+    bool result = 1;
+}
+
+service IPMI {
+    rpc Cycle(IPMIRequest) returns (IPMIResponse) {}
+    rpc On(IPMIRequest) returns (IPMIResponse) {}
+    rpc Off(IPMIRequest) returns (IPMIResponse) {}
+}

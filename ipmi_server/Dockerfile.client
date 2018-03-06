@@ -1,0 +1,21 @@
+FROM python:3.6.4-stretch
+
+RUN pip install -U pip
+
+RUN mkdir -p /code/
+WORKDIR /code/
+
+COPY Pipfile /code/Pipfile
+COPY Pipfile.lock /code/Pipfile.lock
+COPY client.py /code/client.py
+COPY ipmi.py /code/ipmi.py
+COPY ipmi_pb2.py /code/ipmi_pb2.py
+COPY ipmi_pb2_grpc.py /code/ipmi_pb2_grpc.py
+COPY requirements.txt /code/requirements.txt
+
+RUN pip install -r requirements.txt
+
+ENV HOST=localhost
+ENV PORT=50051
+
+CMD ["bash"]
