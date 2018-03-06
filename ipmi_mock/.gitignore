@@ -1,0 +1,9 @@
+bin/
+build/
+dist/
+ipmi_mock.egg-info
+lib/
+.Python
+pip-selfcheck.json
+include/
+__pycache__/

@@ -6,10 +6,12 @@ message IPMIRequest {
 
 message IPMIResponse {
     bool result = 1;
+    string msg = 2;
 }
 
 service IPMI {
     rpc Cycle(IPMIRequest) returns (IPMIResponse) {}
     rpc On(IPMIRequest) returns (IPMIResponse) {}
     rpc Off(IPMIRequest) returns (IPMIResponse) {}
+    rpc Status(IPMIRequest) returns (IPMIResponse) {}
 }

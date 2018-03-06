@@ -2,6 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  config.vm.provider :virtualbox do |vb|
+    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ] # to disable ubuntu-*-cloudimg-console.log
+  end
+
   config.vm.define :pxe_server do |pxe_server|
 
     # Use Ubuntu LTS version
@@ -15,6 +19,16 @@ Vagrant.configure("2") do |config|
       vb.memory = '1024'
       vb.cpus = '1'
     end
+
+$script = <<SCRIPT
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install -y python3-pip
+sudo pip3 install -U pip3
+sudo pip3 install https://github.com/harobed/ipmi_mock_with_virtualbox/releases/download/master/ipmi_mock-0.1.0-py3-none-any.whl
+SCRIPT
+
+    pxe_server.vm.provision "shell", inline: $script
   end
 
   config.vm.define :server1 do |server1|

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='ipmi.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nipmi.proto\"\x19\n\x0bIPMIRequest\x12\n\n\x02ip\x18\x01 \x01(\t\"\x1e\n\x0cIPMIResponse\x12\x0e\n\x06result\x18\x01 \x01(\x08\x32y\n\x04IPMI\x12&\n\x05\x43ycle\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x12#\n\x02On\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x12$\n\x03Off\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nipmi.proto\"\x19\n\x0bIPMIRequest\x12\n\n\x02ip\x18\x01 \x01(\t\"+\n\x0cIPMIResponse\x12\x0e\n\x06result\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x02 \x01(\t2\xa2\x01\n\x04IPMI\x12&\n\x05\x43ycle\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x12#\n\x02On\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x12$\n\x03Off\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x12\'\n\x06Status\x12\x0c.IPMIRequest\x1a\r.IPMIResponse\"\x00\x62\x06proto3')
 )
 
 
@@ -70,6 +70,13 @@ _IPMIRESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='IPMIResponse.msg', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -83,7 +90,7 @@ _IPMIRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=41,
-  serialized_end=71,
+  serialized_end=84,
 )
 
 DESCRIPTOR.message_types_by_name['IPMIRequest'] = _IPMIREQUEST
@@ -112,8 +119,8 @@ _IPMI = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=73,
-  serialized_end=194,
+  serialized_start=87,
+  serialized_end=249,
   methods=[
   _descriptor.MethodDescriptor(
     name='Cycle',
@@ -137,6 +144,15 @@ _IPMI = _descriptor.ServiceDescriptor(
     name='Off',
     full_name='IPMI.Off',
     index=2,
+    containing_service=None,
+    input_type=_IPMIREQUEST,
+    output_type=_IPMIRESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Status',
+    full_name='IPMI.Status',
+    index=3,
     containing_service=None,
     input_type=_IPMIREQUEST,
     output_type=_IPMIRESPONSE,
