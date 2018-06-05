@@ -1,12 +1,8 @@
+Build:
+
 ```
-$ make init
+$ make up
 $ make build
 ```
 
-Build Python Wheel package:
-
-```
-$ make build-wheel
-```
-
-Package in generate in `dist/` directory.
+Executable are generated in `bin/`

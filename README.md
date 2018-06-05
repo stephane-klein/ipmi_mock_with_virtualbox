@@ -8,22 +8,31 @@ On your host, you need:
 
 * [Virtualbox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
-* [pipenv](https://github.com/pypa/pipenv) with Python3
 
 
-## Test
+## How to use
 
-Install and launch *ipmi-mock* server component:
-
-```
-$ pipenv install https://github.com/harobed/ipmi_mock_with_virtualbox/releases/download/master/ipmi_mock-0.1.0-py3-none-any.whl
-$ pipenv shell
-```
+Install *ipmi-server-mock* component:
 
 ```
-$ ipmimock-server
-{'192.168.0.11': 'server1', '192.168.0.12': 'server2'}
-Starting server. Listening on port 0.0.0.0:41000.
+$ curl -L https://github.com/harobed/ipmi_mock_with_virtualbox/releases/download/master/ipmi-mock-server_darwin-amd64 > ipmi-mock-server
+$ chmod u+x ipmi-mock-server
+```
+
+Set IP / Vagrant server name relation in config file:
+
+```
+$ cat ipmi-config.txt
+192.168.0.11 server1
+192.168.0.12 server2
+```
+
+Start *ipmi-server-mock*:
+
+```
+$ CONFIG_FILE=ipmi-config.txt ./ipmi-mock-server
+2018/06/05 10:09:47 Load ipmi-config.txt config file
+2018/06/05 10:09:47 Listen on 0.0.0.0:41000
 ```
 
 
@@ -32,7 +41,7 @@ Execute *ipmitool* command in *pxe_server*:
 ```
 $ vagrant up pxe_server
 $ vagrant ssh pxe_server
-$ export IPMI_MOCK_SERVER=10.0.2.2:41000
+$ export IPMI_MOCK_CONFIG_ADDRESS=10.0.2.2:41000
 $ ipmitool -H 192.168.0.11 power on
 ```
 
