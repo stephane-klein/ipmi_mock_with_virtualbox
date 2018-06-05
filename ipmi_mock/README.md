@@ -5,4 +5,4 @@ $ make up
 $ make build
 ```
 
-Executable are generated in `bin/`
+Executables are generated in `bin/`

@@ -41,8 +41,10 @@ Execute *ipmitool* command in *pxe_server*:
 ```
 $ vagrant up pxe_server
 $ vagrant ssh pxe_server
+$ curl -L https://github.com/harobed/ipmi_mock_with_virtualbox/releases/download/master/ipmitool_linux-amd64 > ipmitool
+$ chmod u+x ./ipmitool
 $ export IPMI_MOCK_CONFIG_ADDRESS=10.0.2.2:41000
-$ ipmitool -H 192.168.0.11 power on
+$ ./ipmitool -H 192.168.0.11 power on
 ```
 
 
