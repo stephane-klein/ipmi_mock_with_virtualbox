@@ -32,6 +32,7 @@ func loadConfig() {
 }
 
 func callVagrantAction(state string, serverName string) error {
+	log.Printf("callVagrantAction state=%s serverName=%s", state, serverName)
 	path, err := exec.LookPath("vagrant")
 	if err != nil {
 		return err
@@ -39,8 +40,10 @@ func callVagrantAction(state string, serverName string) error {
 	var cmd *exec.Cmd
 	switch {
 	case state == "on":
+		log.Printf("Execute: %s up %s --no-provision", path, serverName)
 		cmd = exec.Command(path, "up", serverName, "--no-provision")
 	case state == "off" || state == "cycle":
+		log.Printf("Execute: %s halt %s", path, serverName)
 		cmd = exec.Command(path, "halt", serverName)
 	default:
 		return nil
