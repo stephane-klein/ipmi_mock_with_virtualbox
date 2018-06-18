@@ -47,8 +47,8 @@ else
 	docker-compose exec goworkspace make build-client
 endif
 
-.PHONY: make-release
-make-release: build
+.PHONY: release
+release: build
 	mkdir -p dist/
 	cp bin/darwin_amd64/ipmi-mock-server dist/ipmi-mock-server_darwin-amd64
 	cp bin/darwin_amd64/ipmitool dist/ipmitool_darwin-amd64
