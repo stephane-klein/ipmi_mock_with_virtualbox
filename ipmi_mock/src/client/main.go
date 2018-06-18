@@ -27,7 +27,7 @@ func main() {
 			fmt.Sprintf(
 				"http://%s/%s?ip=%s",
 				ipmiMockConfigAddress,
-				flag.Args()[0],
+				flag.Args()[1],
 				address,
 			),
 		)
