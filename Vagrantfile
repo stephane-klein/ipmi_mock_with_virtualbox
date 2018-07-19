@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :pxe_server do |pxe_server|
 
     # Use Ubuntu LTS version
-    pxe_server.vm.box = "ubuntu/xenial64"
+    pxe_server.vm.box = "bento/ubuntu-18.04"
     pxe_server.vm.hostname = "pxe-server"
     pxe_server.vm.synced_folder '.', '/vagrant', disabled: true
     pxe_server.vm.network "private_network", ip: "192.168.0.254", virtualbox__intnet: "pxe_network"
