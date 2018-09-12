@@ -23,9 +23,8 @@ Vagrant.configure("2") do |config|
 $script = <<SCRIPT
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y python3-pip
-sudo pip3 install -U pip3
-sudo pip3 install https://github.com/harobed/ipmi_mock_with_virtualbox/releases/download/master/ipmi_mock-0.1.0-py3-none-any.whl
+sudo curl -L https://github.com/harobed/ipmi_mock_with_virtualbox/releases/download/master/ipmitool_linux-amd64 > /usr/bin/ipmitool
+sudo chmod +x /usr/bin/ipmitool
 SCRIPT
 
     pxe_server.vm.provision "shell", inline: $script
