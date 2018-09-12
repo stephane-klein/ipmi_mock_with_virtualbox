@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 var _interface, address, user, password, port string
@@ -34,7 +35,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		if flag.Args()[0] == "status" {
+		if strings.EqualFold(strings.Join(flag.Args(), " "), "power status") {
 			data, err := ioutil.ReadAll(resp.Body)
 			if err != nil {
 				log.Fatal(err)
